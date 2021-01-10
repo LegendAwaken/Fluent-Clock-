@@ -1,0 +1,1928 @@
+WindowManager:
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+    transition: NoTransition()
+    canvas:
+        Rectangle:
+            id: rounded_rectangle
+            size: self.size
+            pos: self.pos
+            source: './assets/blur_window.png'
+        Color:
+            id: main_canvas_color
+            rgba: root.color_manager()
+        Rectangle:
+            size: 10000, root.height/7
+            pos: root.width/-10, root.height/1.04
+        RoundedRectangle:
+            size: root.width/3.32, root.height/1.06
+            radius: [15,]
+            pos: root.width/1000, root.height/150.9
+        Color:
+            rgba: root.main_toggle_effect()
+        Rectangle:
+            size: self.size
+            pos:self.pos
+
+    MainScreen:
+    Alarm:
+    NewAlarm:
+    Alarm2:
+    Alarm3:
+    Alarm4:
+    Alarm5:
+    Alarm6:
+    Timer:
+    Stopwatch:
+    SettingsScreen:
+    Reminders:
+    Restart:
+
+<MainScreen>:
+    name: 'clock'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.19
+            radius: [20,]
+        Color:
+            rgba: 0,0,0,0.5
+        RoundedRectangle:
+            size: root.width/4.9, root.height/12
+            pos: root.width/1.7, root.height/18.
+            radius: [23,]
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Label:
+        id: clock
+        size_hint: (None, None)
+        pos: root.width/1.53,root.height/1.48
+        size: root.width/30, root.height/40
+        font_size: root.height/7
+        bold: True
+    Label:
+        text: root.date()
+        size_hint: (None, None)
+        pos: root.width/1.49,root.height/1.73
+        size: root.width/50, root.height/50
+        font_size: root.height/39
+        bold: True
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    Button:
+        text: 'Add Reminder '
+        size_hint: (None,None)
+        size: root.width/4.9, root.height/12
+        pos: root.width/1.65, root.height/18.
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'reminder'
+    Button:
+        text: '+'
+        size_hint: (None,None)
+        size: root.width/4.9, root.height/12
+        pos: root.width/1.89, root.height/18.
+        font_size: root.height/20
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'reminder'
+
+<Alarm>:
+    name: 'alarms'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+        RoundedRectangle:
+            size: root.width/9.8, root.height/12
+            pos: root.width/1.14, root.height/25.9
+            radius: [20,]
+        # alarms label 1
+        RoundedRectangle:
+            size: root.width/2.01, root.height/12
+            pos: root.width/2.9, root.height/1.21
+            radius: [23,]
+        # alarms label 2
+        RoundedRectangle:
+            size: root.width/2.01, root.height/12
+            pos: root.width/2.9, root.height/1.42
+            radius: [23,]
+        # alarms label 3
+        RoundedRectangle:
+            size: root.width/2.01, root.height/12
+            pos: root.width/2.9, root.height/1.71
+            radius: [23,]
+        # alarms label 4
+        RoundedRectangle:
+            size: root.width/2.01, root.height/12
+            pos: root.width/2.9, root.height/2.16
+            radius: [23,]
+        # alarms label 5
+        RoundedRectangle:
+            size: root.width/2.01, root.height/12
+            pos: root.width/2.9, root.height/3
+            radius: [23,]
+        # alarms label 6
+        RoundedRectangle:
+            size: root.width/2.01, root.height/12
+            pos: root.width/2.9, root.height/4.9
+            radius: [23,]
+
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Label:
+        text: '+'
+        size_hint: (None, None)
+        pos: root.width/1.118, root.height/14.4
+        background_color: 0,0,0,0
+        size: root.width/50, root.height/30
+        font_size: root.height/25
+    Button:
+        text: 'New'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.13, root.height/19.9
+        size: root.width/10, root.height/13
+        font_size: root.height/38
+        background_color: 0,0,0,0
+        on_release: app.root.current = 'set alarm'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    # label alarm 1
+    Label:
+        id: alarm1_label
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/6.8, root.height/1.21
+        text: root.labels()
+        font_size: root.height/38
+    # label alarm 2
+    Label:
+        id: alarm2_label
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/6.8, root.height/1.42
+        text: root.labels_alarm2()
+        font_size: root.height/38
+    # label alarm 3
+    Label:
+        id: alarm3_label
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/6.8, root.height/1.71
+        text: 'Alarm 3'
+        font_size: root.height/38
+    # label alarm 4
+    Label:
+        id: alarm4_label
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/6.8, root.height/2.16
+        text: 'Alarm 4'
+        font_size: root.height/38
+    # label alarm 5
+    Label:
+        id: alarm5_label
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/6.8, root.height/3
+        text: 'Alarm 5'
+        font_size: root.height/38
+    # label alarm 6
+    Label:
+        id: alarm6_label
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/6.8, root.height/4.9
+        text: 'Alarm 6'
+        font_size: root.height/38
+    # time label 1
+    Label:
+        id: alarm1_notifier
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/1.9, root.height/1.21
+        font_size: root.height/38
+    # alarm 2 notifier
+    Label:
+        id: alarm2_notifier
+        size_hint: (None, None)
+        size: root.width/2.01, root.height/12
+        pos: root.width/1.9, root.height/1.42
+        font_size: root.height/38
+    # pause alarm 1
+
+    Button:
+        id: pause_alarm1
+        size_hint: (None, None)
+        background_normal: 'assets/metadata_image/pause_alarm_fade.png'
+        background_down: 'assets/metadata_image/pause_alarm_fade.png'
+        pos: root.width/1.43, root.height/1.21
+        size: root.width/20, root.height/12
+        font_size: root.height/38
+        on_press: root.stop()
+    # pause alarm 2
+    Button:
+        id: pause_alarm2
+        size_hint: (None, None)
+        background_normal: 'assets/metadata_image/pause_alarm_fade.png'
+        background_down: 'assets/metadata_image/pause_alarm_fade.png'
+        pos: root.width/1.43, root.height/1.42
+        size: root.width/20, root.height/12
+        font_size: root.height/38
+        on_press: root.stop()
+    # pause alarm 3
+    Button:
+        id: pause_alarm3
+        size_hint: (None, None)
+        background_normal: 'assets/metadata_image/pause_alarm_fade.png'
+        background_down: 'assets/metadata_image/pause_alarm_fade.png'
+        pos: root.width/1.43,root.height/1.70
+        size: root.width/20, root.height/12
+        font_size: root.height/38
+        on_press: root.stop()
+    # pause alarm 4
+    Button:
+        id: pause_alarm4
+        size_hint: (None, None)
+        background_normal: 'assets/metadata_image/pause_alarm_fade.png'
+        background_down: 'assets/metadata_image/pause_alarm_fade.png'
+        pos: root.width/1.43, root.height/2.15
+        size: root.width/20, root.height/12
+        font_size: root.height/38
+        on_press: root.stop()
+    # pause alarm 5
+    Button:
+        id: pause_alarm5
+        size_hint: (None, None)
+        background_normal: 'assets/metadata_image/pause_alarm_fade.png'
+        background_down: 'assets/metadata_image/pause_alarm_fade.png'
+        pos: root.width/1.43, root.height/3.0
+        size: root.width/20, root.height/12
+        font_size: root.height/38
+        on_press: root.stop()
+    # pause alarm 6
+    Button:
+        id: pause_alarm6
+        size_hint: (None, None)
+        background_normal: 'assets/metadata_image/pause_alarm_fade.png'
+        background_down: 'assets/metadata_image/pause_alarm_fade.png'
+        pos: root.width/1.43, root.height/4.84
+        size: root.width/20, root.height/12
+        font_size: root.height/38
+        on_press: root.stop()
+    # toggle status alarm 1
+    ToggleButton:
+        id: toggle_alarm_1
+        size_hint: (None, None)
+        text: root.toggle_1_text()
+        on_state:
+            self.text = {'normal': 'Status : ON', 'down': 'Status : OFF'} [self.state]
+            down: root.toggle_info()
+        pos:root.width/2.1, root.height/1.21
+        size: root.width/10, root.height/13
+        background_color: 0,0,0,0
+        font_size: root.height/39
+        # toggle status alarm 2
+    ToggleButton:
+        id: toggle_alarm_2
+        size_hint: (None, None)
+        text: root.toggle_2_text()
+        on_state:
+            self.text = {'normal': 'Status : ON', 'down': 'Status : OFF'} [self.state]
+            down: root.toggle_info()
+        pos:root.width/2.1,root.height/1.42
+        size: root.width/10, root.height/13
+        background_color: 0,0,0,0
+        font_size: root.height/39
+        # toggle status alarm 3
+    Button:
+        id: alarm_2_edit
+        size_hint: (None, None)
+        text: 'Edit'
+        font_size: root.height/39
+        size: root.width/15, root.height/12
+        pos: root.width/1.59, root.height/1.42
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'alarm2'
+    ToggleButton:
+        id: toggle_alarm_3
+        size_hint: (None, None)
+        text: root.toggle_3_text()
+        on_state:
+            self.text = {'normal': 'Status : OFF', 'down': 'Status : ON'} [self.state]
+            down: root.toggle_info()
+        pos:root.width/2.1, root.height/1.70
+        size: root.width/10, root.height/13
+        background_color: 0,0,0,0
+        font_size: root.height/39
+    Button:
+        id: alarm_3_edit
+        size_hint: (None, None)
+        text: 'Edit'
+        font_size: root.height/39
+        size: root.width/15, root.height/12
+        pos: root.width/1.59, root.height/1.70
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'alarm3'
+        # toggle status alarm 4
+    ToggleButton:
+        id: toggle_alarm_4
+        size_hint: (None, None)
+        text: root.toggle_4_text()
+        on_state:
+            self.text = {'normal': 'Status : OFF', 'down': 'Status : ON'} [self.state]
+            down: root.toggle_info()
+        pos:root.width/2.1,root.height/2.15
+        size: root.width/10, root.height/13
+        background_color: 0,0,0,0
+        font_size: root.height/39
+    Button:
+        id: alarm_4_edit
+        size_hint: (None, None)
+        text: 'Edit'
+        font_size: root.height/39
+        size: root.width/15, root.height/12
+        pos: root.width/1.59, root.height/2.15
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'alarm4'
+        # toggle status alarm 5
+    ToggleButton:
+        id: toggle_alarm_5
+        size_hint: (None, None)
+        text: root.toggle_5_text()
+        on_state:
+            self.text = {'normal': 'Status : OFF', 'down': 'Status : ON'} [self.state]
+            down: root.toggle_info()
+        pos:root.width/2.1, root.height/3.0
+        size: root.width/10, root.height/13
+        background_color: 0,0,0,0
+        font_size: root.height/39
+    Button:
+        id: alarm_5_edit
+        size_hint: (None, None)
+        text: 'Edit'
+        font_size: root.height/39
+        size: root.width/15, root.height/12
+        pos: root.width/1.59, root.height/3.0
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'alarm5'
+        # toggle status alarm 6
+    ToggleButton:
+        id: toggle_alarm_6
+        size_hint: (None, None)
+        text: root.toggle_6_text()
+        on_state:
+            self.text = {'normal': 'Status : OFF', 'down': 'Status : ON'} [self.state]
+            down: root.toggle_info()
+        pos:root.width/2.1, root.height/4.84
+        size: root.width/10, root.height/13
+        background_color: 0,0,0,0
+        font_size: root.height/39
+    Button:
+        id: alarm_6_edit
+        size_hint: (None, None)
+        text: 'Edit'
+        font_size: root.height/39
+        size: root.width/15, root.height/12
+        pos: root.width/1.59, root.height/4.84
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'alarm6'
+
+
+<NewAlarm>:
+    name: 'set alarm'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        # selected menu
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+        # toolbox
+        RoundedRectangle:
+            size: root.width/6.1, root.height/12
+            pos: root.width/1.21, root.height/20.9
+            radius: [20,]
+        Color:
+            rgba: 0,0,0,0.5
+        # Name
+        RoundedRectangle:
+            size: root.width/4.9, root.height/12
+            pos: root.width/2.9, root.height/1.89
+            radius: [23,]
+        RoundedRectangle:
+            size: root.width/4.9, root.height/12
+            pos: root.width/1.5, root.height/1.89
+            radius: [23,]
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        background_normal: 'assets/metadata_image/fluent_save.png'
+        background_down:'assets/metadata_image/fluent_save.png'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.07, root.height/15.6
+        size: 40, 40
+        on_press: root.save_alarm()
+        on_release: app.root.current = 'alarms'
+    Button:
+        id: back_button
+        background_normal: 'assets/metadata_image/fluent_back.png'
+        background_down:'assets/metadata_image/fluent_back.png'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/3.2, root.height/1.11
+        size: 37, 37
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Save'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.15, root.height/16
+        background_color: 0,0,0,0
+        size: 60, 45
+        font_size: root.height/31
+        on_press: root.save_alarm()
+        on_release: app.root.current = 'alarms'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    # hour
+    TextInput:
+        id: timer_hour
+        size_hint: (None, None)
+        pos: root.width/2.4,root.height/1.5
+        size: root.width/7.99, root.height/4
+        multiline: False
+        hint_text: root.hour()
+        focus: True
+        font_size: root.height/5.5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text_validate: root.alarm_time()
+        on_text: root.alarm_time()
+    Label:
+        size_hint: (None, None)
+        pos: root.width/1.76,root.height/1.25
+        size: root.width/50.1, root.height/50
+        text: ':'
+        bold: True
+        font_size: root.height/5
+    # minute
+    TextInput:
+        id: timer_minute
+        size_hint: (None, None)
+        pos: root.width/1.64,root.height/1.5
+        size: root.width/7.99, root.height/4
+        multiline: False
+        focus: True
+        font_size: root.height/5.5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text: root.alarm_time()
+        on_text_validate: root.alarm_time()
+
+    Label:
+        size_hint: (None, None)
+        pos: root.width/1.301,root.height/1.25
+        size: root.width/50.1, root.height/50
+        text: ':'
+        bold: True
+        font_size: root.height/5
+    # seconds
+    TextInput:
+        id: timer_seconds
+        size_hint: (None, None)
+        pos: root.width/1.22,root.height/1.5
+        size: root.width/7.99, root.height/4
+        multiline: False
+        focus: True
+        font_size: root.height/5.5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text_validate: root.alarm_time()
+        on_text: root.alarm_time()
+    TextInput:
+        id: alarm_label
+        size_hint: (None,None)
+        pos: root.width/2.76, root.height/1.92
+        size: root.width/6, root.height/13
+        hint_text: 'Alarm Label'
+        font_size: root.height/35
+        multiline: False
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+    TextInput:
+        id: alarm_sound
+        size_hint: (None,None)
+        pos: root.width/1.45, root.height/1.92
+        size: root.width/6, root.height/13
+        hint_text: 'Alarm Sound'
+        text: 'flute1'
+        on_text: root.save_alarm()
+        font_size: root.height/35
+        multiline: False
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+
+
+# timer GUI from here
+<Timer>:
+    name: 'timer'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.67
+            radius: [20,]
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    # timer label
+    Label:
+        id: timer_label
+        pos: root.width/5.7,root.height/5.1
+        font_size: root.height/7
+        bold: True
+
+    Label:
+        id: notification
+        font_size: root.height/35
+        size_hint: (None, None)
+        pos: root.width/1.29, root.height/1.199
+    # hour
+    TextInput:
+        id: timer_hour
+        size_hint: (None, None)
+        pos: root.width/2.4,root.height/1.9
+        size: root.width/8.001, root.height/4
+        multiline: False
+        hint_text: '00 '
+        focus: True
+        font_size: root.height/5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text_validate: root.timer_hour()
+        on_text: root.timer_hour()
+    Label:
+        size_hint: (None, None)
+        pos: root.width/1.76,root.height/1.5
+        size: root.width/50.1, root.height/50
+        text: ':'
+        bold: True
+        font_size: root.height/5
+    # minute
+    TextInput:
+        id: timer_minute
+        size_hint: (None, None)
+        pos: root.width/1.64,root.height/1.9
+        size: root.width/8.001, root.height/4
+        multiline: False
+        hint_text: '00 '
+        focus: True
+        font_size: root.height/5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text_validate: root.timer_minute()
+        on_text: root.timer_minute()
+    Label:
+        size_hint: (None, None)
+        pos: root.width/1.301,root.height/1.5
+        size: root.width/50.1, root.height/50
+        text: ':'
+        bold: True
+        font_size: root.height/5
+    # seconds
+    TextInput:
+        id: timer_seconds
+        size_hint: (None, None)
+        pos: root.width/1.22,root.height/1.9
+        size: root.width/8.001, root.height/4
+        multiline: False
+        hint_text: '00 '
+        focus: True
+        font_size: root.height/5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text: root.timer_seconds()
+        on_text_validate: root.timer_seconds()
+    Button:
+        id: play_button
+        size_hint: (None, None)
+        size: 90, 90
+        background_normal: 'assets/metadata_image/buttons/play.png'
+        background_down: 'assets/metadata_image/buttons/play_fade.png'
+        pos: root.width/1.74, root.height/2.4
+        on_press: root.set_image()
+    Button:
+        id: pause_button
+        size_hint: (None, None)
+        size: 90, 90
+        background_normal: 'assets/metadata_image/buttons/pause_fade.png'
+        background_down: 'assets/metadata_image/buttons/pause.png'
+        pos: root.width/1.44, root.height/2.4
+        on_press: root.timer_pause()
+
+# stopwatch from here
+<Stopwatch>:
+    name: 'stopwatch'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/2.1
+            radius: [20,]
+
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+
+# this is settings window
+<SettingsScreen>:
+    name: 'settings'
+    #: import rgba kivy.utils.get_color_from_hex
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/2.86
+            radius: [20,]
+        Color:
+            rgba: 0,0,0,0.5
+        # transparency effect
+        RoundedRectangle:
+            size: root.width/4.9, root.height/12
+            pos: root.width/2.9, root.height/1.21
+            radius: [23,]
+        # blur intensity
+        RoundedRectangle:
+            size: root.width/3.9, root.height/12
+            pos: root.width/1.6, root.height/1.21
+            radius: [23,]
+        # save
+        RoundedRectangle:
+            size: root.width/7.5, root.height/12
+            pos: root.width/1.18, root.height/20.9
+            radius: [20,]
+        # accent color
+        RoundedRectangle:
+            size: root.width/2.1, root.height/3
+            pos: root.width/2.9, root.height/2.31
+            radius: [20,]
+        # time format
+        RoundedRectangle:
+            size: root.width/5.3, root.height/12
+            pos: root.width/2.9, root.height/3.55
+            radius: [23,]
+        # ACRYLIC BLUR EFFECT
+        RoundedRectangle:
+            size: root.width/5.3, root.height/12
+            pos: root.width/2.9, root.height/7.2
+            radius: [23,]
+        # usr_id
+        RoundedRectangle:
+            size: root.width/5.3, root.height/12
+            pos: root.width/1.6, root.height/3.55
+            radius: [23,]
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    Label:
+        text: 'Transparency Effect : '
+        size_hint: (None, None)
+        pos: root.width/2.63, root.height/1.25
+        font_size: root.height/45
+        size: root.width/11, root.height/7
+
+    ToggleButton:
+        id: toggle
+        text: root.toggle_reader()
+        on_state:
+            self.text = {'normal': 'ON', 'down': 'OFF'} [self.state]
+        size_hint: (None,None)
+        pos: root.width/2.17, root.height/1.176
+        size: root.width/11.2, root.height/25
+        background_color: 0,0,0,0
+        font_size: root.height/45
+    Label:
+        text: 'Blur Intensity : '
+        size_hint: (None, None)
+        pos: root.width/1.62, root.height/1.23
+        font_size: root.height/45
+        size: root.width/7, root.height/9
+    Label:
+        id: slider_value
+        size_hint: (None, None)
+        text: root.blur_text_return()
+        pos: root.width/1.37, root.height/1.19
+        font_size: root.height/45
+        size: root.width/7, root.height/10
+    Slider:
+        id: blur_intensity
+        min: 10
+        max: 99
+        value: root.slider_value()
+        orientation: 'horizontal'
+        size_hint: (None,None)
+        pos: root.width/1.37, root.height/1.34
+        size: root.width/6.8, root.height/4,
+        on_value: root.blur_intensity()
+    Button:
+        id: save_button
+        background_normal: 'assets/metadata_image/save60.png'
+        background_down:'assets/metadata_image/save60.png'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.08, root.height/15.6
+        size: root.width/30, root.height/19
+        on_press: root.save_toggle_value()
+        on_release: app.root.current = 'restart'
+    Button:
+        text: 'Save'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.143, root.height/13.4
+        background_color: 0,0,0,0
+        size: root.width/40, root.height/30
+        bold: True
+        font_size: root.height/28
+        on_press: root.save_toggle_value()
+        on_release: app.root.current = 'restart'
+    Label:
+        text: 'Accent Color'
+        font_size: root.height/45
+        size_hint: (None,None)
+        pos: root.width/2.7, root.height/1.43
+        size: root.width/10, root.height/14
+    Label:
+        size_hint: (None,None)
+        size: root.width/40.1, root.height/30
+        pos: root.width/2.5, root.height/1.77
+        text: 'Dark Effect'
+        font_size: root.height/45
+    Label:
+        id: dark_label
+        text: root.get_label()
+        size_hint: (None,None)
+        size: root.width/40.1, root.height/30
+        pos: root.width/2.13, root.height/1.9
+        font_size: root.height/38
+    Slider:
+        id: dark_slider
+        size_hint: (None,None)
+        size: root.width/4.4, root.height/20
+        pos: root.width/2.69, root.height/2.01
+        max: 99
+        min: 10
+        on_value: root.dark_slider_handler()
+        value: root.value_grabber()
+    ToggleButton:
+        id: slider_toggle
+        size_hint: (None,None)
+        size:root.width/30, root.height/20
+        background_color: 0,0,0,0
+        text: root.return_text_toggle()
+        font_size: root.height/45
+        pos: root.width/1.6, root.height/2.01
+        on_state:
+            self.text = {'normal': 'ON', 'down': 'OFF'} [self.state]
+            root.dark_toggle()
+    # red
+    Button:
+        id: red
+        size_hint: (None, None)
+        pos: root.width/2.61, root.height/1.58
+        background_color: 204,0,0,1
+        size: root.width/30, root.height/20
+
+
+    # green
+    Button:
+        size_hint: (None, None)
+        pos: root.width/2.3, root.height/1.58
+        background_color: 0,204,0,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    # yellow
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/2.05, root.height/1.58
+        background_color: 204,204,0,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    # pink
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/1.85, root.height/1.58
+        background_color: 204,51,255,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    # black
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/1.69, root.height/1.58
+        background_color: 0,0,0,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    # pure white
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/1.55, root.height/1.58
+        background_color: 1,1,1,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    # orange
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/1.43, root.height/1.58
+        background_color: 0,102,0,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/2.61, root.height/1.58
+        background_color: 204,0,0,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    ToggleButton:
+        size_hint: (None, None)
+        pos: root.width/2.61, root.height/1.58
+        background_color: 204,0,0,1
+        size: root.width/30, root.height/20
+        group: 'accentcolor'
+    ToggleButton:
+        id: time_format
+        size_hint: (None, None)
+        text: root.time_format()
+        pos: root.width/2.17, root.height/3.44
+        background_color: 0,0,0,0
+        size: root.width/23, root.height/15
+        on_state:
+            self.text = {'normal': '24 hour', 'down': '12 hour'} [self.state]
+        font_size: root.height/49
+        italic: True
+    Label:
+        text: 'Time Format : '
+        size_hint: (None, None)
+        pos: root.width/2.78, root.height/3.9
+        font_size: root.height/45
+        size: root.width/11, root.height/7
+
+    # user id
+    TextInput:
+        id: user_name
+        hint_text: 'Your name'
+        text: root.user_return()
+        size_hint: (None, None)
+        size: root.width/6.3, root.height/12
+        pos: root.width/1.54, root.height/3.73
+        multiline: False
+        font_size: root.height/45
+        background_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text: root.user_name()
+
+    # acrylic blur
+    Label:
+        text: 'Acrylic Blur : '
+        size_hint: (None, None)
+        font_size: root.height/45
+        size: root.width/11, root.height/7
+        pos: root.width/2.78, root.height/8.7
+    ToggleButton:
+        id: ac_blur
+        text: root.reader_data()
+        on_state:
+            self.text = {'normal': 'ON', 'down': 'OFF'} [self.state]
+            root.get_value()
+        size_hint: (None, None)
+        pos: root.width/2.22, root.height/6.58
+        background_color: 0,0,0,0
+        size: root.width/23, root.height/15
+        font_size: root.height/49
+        italic: True
+
+# reminder screen
+<Reminders>:
+    name: 'reminder'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.4
+        RoundedRectangle:
+            size: root.width/4.01, root.height/12
+            pos: root.width/2.9, root.height/1.7
+            radius: [23,]
+        # hour
+        RoundedRectangle:
+            size: root.width/8.5, root.height/12
+            pos: root.width/2.9, root.height/1.36
+            radius: [23,]
+        # minutes
+        RoundedRectangle:
+            size: root.width/8.5, root.height/12
+            pos: root.width/2.01, root.height/1.36
+            radius: [23,]
+        # seconds
+        RoundedRectangle:
+            size: root.width/8.5, root.height/12
+            pos: root.width/1.54, root.height/1.36
+            radius: [23,]
+        # save
+        RoundedRectangle:
+            size: root.width/7.5, root.height/12
+            pos: root.width/1.18, root.height/20.9
+            radius: [20,]
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    Label:
+        text: 'Reminder'
+        size_hint: (None, None)
+        size: root.width/40, root.height/30
+        pos: root.width/1.50, root.height/1.12
+        font_size: root.height/15
+        bold: True
+    TextInput:
+        id: what_to_do
+        size_hint: (None, None)
+        size: root.width/4.5, root.height/12
+        pos: root.width/2.8, root.height/1.73
+        hint_text: 'What to remind?'
+        font_size: root.height/29
+        background_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        multiline: False
+    TextInput:
+        id: hour
+        size_hint: (None, None)
+        size: root.width/17.5, root.height/12
+        pos: root.width/2.7, root.height/1.37
+        hint_text: root.hour()
+        font_size: root.height/29
+        background_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        multiline: False
+        on_text: root.reminder_time()
+        on_text_validate: root.reminder_time()
+    TextInput:
+        id: minutes
+        size_hint: (None, None)
+        size: root.width/18.5, root.height/12
+        pos: root.width/1.91, root.height/1.37
+        font_size: root.height/29
+        background_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        multiline: False
+        on_text: root.reminder_time()
+        on_text_validate: root.reminder_time()
+    TextInput:
+        id: seconds
+        size_hint: (None, None)
+        size: root.width/18.5, root.height/12
+        pos: root.width/1.48, root.height/1.37
+        font_size: root.height/29
+        background_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        multiline: False
+        on_text: root.reminder_time()
+        on_text_validate: root.reminder_time()
+    Button:
+        text: 'Save'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.143, root.height/13.4
+        background_color: 0,0,0,0
+        size: root.width/40, root.height/30
+        bold: True
+        font_size: root.height/28
+        on_release: app.root.current = 'clock'
+        on_press: root.remind_label()
+    Button:
+        id: save_button
+        background_normal: 'assets/metadata_image/save60.png'
+        background_down:'assets/metadata_image/save60.png'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.08, root.height/15.6
+        size: root.width/30, root.height/19
+        on_release: app.root.current = 'clock'
+        on_press: root.remind_label()
+
+<Restart>:
+    name: 'restart'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.9
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    Label:
+        text: 'Restart the app to see the effects.'
+        size_hint: (None,  None)
+        size: root.width/1.8, root.height/15
+        pos: root.width/4.5, root.height/1.5
+        font_size: root.height/30
+    Button:
+        text: 'Accept'
+        size_hint: (None,None)
+        size: root.width/6.8, root.height/13
+        pos: root.width/3.01, root.height/1.9
+        font_size: root.height/34
+        background_color: 0, 0, 0, 0
+        on_press: root.restart()
+    Button:
+        text: 'Decline'
+        size_hint: (None,None)
+        size: root.width/6.8, root.height/13
+        pos: root.width/2.01, root.height/1.9
+        font_size: root.height/34
+        background_color: 0, 0, 0, 0
+        on_press: app.root.current = 'settings'
+
+# ################################# Alarms  ############################## #
+<Alarm2>:
+    name: 'alarm2'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+        Color:
+            rgba: 0,0,0,0.3
+        # selected menu
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+        # toolbox
+        RoundedRectangle:
+            size: root.width/6.1, root.height/12
+            pos: root.width/1.21, root.height/20.9
+            radius: [20,]
+        Color:
+            rgba: 0,0,0,0.5
+        # Name
+        RoundedRectangle:
+            size: root.width/4.9, root.height/12
+            pos: root.width/2.9, root.height/1.89
+            radius: [23,]
+        RoundedRectangle:
+            size: root.width/4.9, root.height/12
+            pos: root.width/1.5, root.height/1.89
+            radius: [23,]
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        background_normal: 'assets/metadata_image/fluent_save.png'
+        background_down:'assets/metadata_image/fluent_save.png'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.07, root.height/15.6
+        size: 40, 40
+        on_press: root.save_alarm()
+        on_release: app.root.current = 'alarms'
+    Button:
+        id: back_button
+        background_normal: 'assets/metadata_image/fluent_back.png'
+        background_down:'assets/metadata_image/fluent_back.png'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/3.2, root.height/1.11
+        size: 37, 37
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Save'
+        size_hint: (None, None)
+        size: root.width/2.9, root.height/15
+        pos: root.width/1.15, root.height/16
+        background_color: 0,0,0,0
+        size: 60, 45
+        font_size: root.height/31
+        on_press: root.save_alarm()
+        on_release: app.root.current = 'alarms'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+    # hour
+    TextInput:
+        id: timer_hour
+        size_hint: (None, None)
+        pos: root.width/2.4,root.height/1.5
+        size: root.width/7.99, root.height/4
+        multiline: False
+        hint_text: root.hour()
+        focus: True
+        font_size: root.height/5.5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text_validate: root.alarm_time()
+        on_text: root.alarm_time()
+    Label:
+        size_hint: (None, None)
+        pos: root.width/1.76,root.height/1.25
+        size: root.width/50.1, root.height/50
+        text: ':'
+        bold: True
+        font_size: root.height/5
+    # minute
+    TextInput:
+        id: timer_minute
+        size_hint: (None, None)
+        pos: root.width/1.64,root.height/1.5
+        size: root.width/7.99, root.height/4
+        multiline: False
+        focus: True
+        font_size: root.height/5.5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text: root.alarm_time()
+        on_text_validate: root.alarm_time()
+
+    Label:
+        size_hint: (None, None)
+        pos: root.width/1.301,root.height/1.25
+        size: root.width/50.1, root.height/50
+        text: ':'
+        bold: True
+        font_size: root.height/5
+    # seconds
+    TextInput:
+        id: timer_seconds
+        size_hint: (None, None)
+        pos: root.width/1.22,root.height/1.5
+        size: root.width/7.99, root.height/4
+        multiline: False
+        focus: True
+        font_size: root.height/5.5
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+        on_text_validate: root.alarm_time()
+        on_text: root.alarm_time()
+    TextInput:
+        id: alarm_label
+        size_hint: (None,None)
+        pos: root.width/2.76, root.height/1.92
+        size: root.width/6, root.height/13
+        hint_text: 'Alarm Label'
+        font_size: root.height/35
+        multiline: False
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+    TextInput:
+        id: alarm_sound
+        size_hint: (None,None)
+        pos: root.width/1.45, root.height/1.92
+        size: root.width/6, root.height/13
+        hint_text: 'Alarm Sound'
+        text: 'flute1'
+        on_text: root.save_alarm()
+        font_size: root.height/35
+        multiline: False
+        background_color: 0,0,0,0
+        cursor_color: 0,0,0,0
+        foreground_color: 1,1,1,1
+
+
+<Alarm3>:
+    name: 'alarm3'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+
+
+<Alarm4>:
+    name: 'alarm4'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+
+
+<Alarm5>:
+    name: 'alarm5'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+
+
+<Alarm6>:
+    name: 'alarm6'
+    canvas:
+        Color:
+            rgba: 0,0,0,0.3
+        RoundedRectangle:
+            size: root.width/3.8, root.height/12
+            pos: root.width/110, root.height/1.38
+            radius: [20,]
+
+    Label:
+        text: 'Alarms & Clock'
+        size_hint: (None, None)
+        font_size: root.height/51
+        pos: root.width/30, root.height/1.078
+        size: root.width/40, root.height/9
+    Button:
+        text: 'X'
+        font_size: root.height/43
+        size_hint: (None,None)
+        pos: root.width/1.05, root.height/1.040
+        background_color: 0,0,0,0
+        size: 100, 40
+        on_press: app.root.close()
+    Button:
+        text: 'Clock'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.19
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'clock'
+    Button:
+        text: 'Alarms'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.38
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'alarms'
+    Button:
+        text: 'Timer'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/1.67
+        background_color: 0,0,0,0
+        font_size: root.height/34
+        on_press: app.root.current = 'timer'
+    Button:
+        text: 'Stopwatch'
+        size_hint: (None, None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.1
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'stopwatch'
+    Button:
+        text: 'Preferences'
+        size_hint: (None,None)
+        size: root.width/3.8, root.height/13
+        pos: root.width/110, root.height/2.86
+        font_size: root.height/34
+        background_color: 0,0,0,0
+        on_press: app.root.current = 'settings'
+
+
+# ############################### End of Alarms ############################## #
